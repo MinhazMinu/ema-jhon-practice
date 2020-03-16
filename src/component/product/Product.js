@@ -1,7 +1,8 @@
 import React from "react";
 import "./Product.css";
+import { FaCartPlus } from "react-icons/fa";
 
-const Product = ({ product }) => {
+const Product = ({ product, handleAddProduct }) => {
   const { img, name, seller, price, stock } = product;
   return (
     <div className="product">
@@ -16,7 +17,14 @@ const Product = ({ product }) => {
         <p>$ {price}</p>
         <br />
         <p>
-          <small>Only {stock} left! - Order soon</small>
+          <small>Only {stock} left! - Order soon</small> <br />
+          <button
+            className="main-button"
+            onClick={() => handleAddProduct(product)}
+          >
+            <FaCartPlus />
+            &nbsp; add to cart
+          </button>
         </p>
       </div>
     </div>
