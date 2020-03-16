@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fakeData from "../../fakeData";
 import "./Shop.css";
 import Product from "../product/Product";
 import Cart from "../cart/Cart";
-import { addToDatabaseCart } from "../../utilities/databaseManager";
+import {
+  addToDatabaseCart,
+  getDatabaseCart
+} from "../../utilities/databaseManager";
 
 const Shop = () => {
   /**
@@ -16,6 +19,18 @@ const Shop = () => {
   /**
    * event handel
    */
+
+  useEffect(() => {
+    const savedCart = getDatabaseCart();
+    const productKeyes = Object.keys(savedCart);
+    const previousCart = productKeyes.map(pdkey => {
+      const product = fakeData.find(pd => pdkey === pd.key);
+      product.quantity = savedCart[pdkey];
+      return product;
+    });
+
+    setCart(previousCart);
+  }, []);
 
   const handleAddProduct = product => {
     const toBeadded = product.key;
