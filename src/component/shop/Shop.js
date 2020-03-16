@@ -15,7 +15,9 @@ const Shop = () => {
       <div className="product-container">
         <ul>
           {products.map(product => (
-            <Product product={product}> </Product>
+            <Product key={product.key} product={product}>
+              {" "}
+            </Product>
           ))}
         </ul>
       </div>
