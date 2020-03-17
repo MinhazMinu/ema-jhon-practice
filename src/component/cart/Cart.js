@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const Cart = ({ cart, showAddToCart }) => {
-  console.log(cart);
+const Cart = props => {
+  const { cart } = props;
   const Total = cart.reduce((sum, i) => {
     sum += i.price;
     const tot = parseFloat(sum) * parseFloat(i.quantity);
-    debugger;
+
     return tot;
   }, 0);
   const shipping = cart.length ? (Total > 350 ? 0 : 40.95) : 0;
@@ -19,10 +18,8 @@ const Cart = ({ cart, showAddToCart }) => {
       <h5>Shiping Cost :{shipping}</h5>
       <h5>Tex + Vat : {tex}</h5>
       <h5>Total Price: {parseFloat(grandtotal)}</h5>
-
-      <Link to="/review">
-        <button className="main-button">Review Order</button>
-      </Link>
+      <br />
+      {props.children}
     </div>
   );
 };
