@@ -4,6 +4,8 @@ import { MdDelete } from "react-icons/md";
 
 const ReviewItem = ({ product, removeProduct }) => {
   const { name, quantity, key, price } = product;
+  console.log("rem", quantity);
+
   return (
     <div className="review-item">
       <h4 className="">{name}</h4>

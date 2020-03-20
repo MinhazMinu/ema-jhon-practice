@@ -45,12 +45,15 @@ const Shop = () => {
       newCart = [...others, sameProduct];
     } else {
       product.quantity = 1;
+      console.log(cart);
+      console.log(product.quantity);
+
       newCart = [...cart, product];
+      console.log(newCart);
     }
 
-    setCart(newCart);
-
     addToDatabaseCart(product.key, count);
+    setCart(newCart);
   };
   return (
     <div className="twin-container">
